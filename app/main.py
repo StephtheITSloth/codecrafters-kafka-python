@@ -25,6 +25,5 @@ async def main():
     server = KafkaServer("localhost", 9092)
     await server.start_server() # wait for client
 
-
 if __name__ == "__main__":
     asyncio.run(main())

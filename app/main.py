@@ -15,7 +15,7 @@ class KafkaServer:
     async def handle_request(self, writer, reader):
         pass
 
-def main():
+async def main():
     # You can use print statements as follows for debugging,
     # they'll be visible when running tests.
     print("Logs from your program will appear here!")
@@ -23,7 +23,7 @@ def main():
     # Uncomment this to pass the first stage
     #
     server = KafkaServer("localhost", 9092)
-    server.start_server() # wait for client
+    await server.start_server() # wait for client
 
 
 if __name__ == "__main__":

@@ -1,6 +1,20 @@
 import socket  # noqa: F401
 import asyncio
 
+class KafkaServer:
+    def __init__(self, host, port):
+        self.port = port
+        self.host = host
+        self.server = None
+
+    async def start_server(self):
+        self.server = await asyncio.start_server(self.handle_request, self.host, self.port)
+        async with self.server:
+            await self.server.serve_forever()
+
+    async def handle_request(self, writer, reader):
+        pass
+
 def main():
     # You can use print statements as follows for debugging,
     # they'll be visible when running tests.
@@ -8,8 +22,8 @@ def main():
 
     # Uncomment this to pass the first stage
     #
-    server = socket.create_server(("localhost", 9092), reuse_port=True)
-    server.accept() # wait for client
+    server = KafkaServer("localhost", 9092)
+    server.start_server() # wait for client
 
 
 if __name__ == "__main__":

@@ -21,7 +21,8 @@ class KafkaServer:
 
         print(data, "data")
         print(api_key, "api key", api_version, "api version", correlation_id, "id")
-
+        if api_version == 35:
+            print('yes it is here at 25')
         response = struct.pack('>HHI', api_key, api_version, correlation_id)
         writer.write(response)
         await writer.drain()

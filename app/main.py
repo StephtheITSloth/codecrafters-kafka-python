@@ -23,6 +23,7 @@ class KafkaServer:
         print(api_key, "api key", api_version, "api version", correlation_id, "id")
         
         response = struct.pack('>HHIi', api_key, api_version, correlation_id, 35)
+        print(response, "response")
         writer.write(response)
         await writer.drain()
         pass

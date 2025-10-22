@@ -14,7 +14,8 @@ class KafkaServer:
 
     async def handle_request(self, reader, writer):
         data = await reader.read(1064)
-        print(data, "17")
+        data = data.decode()
+        print(data, "data at 18")
         pass
 
 async def main():

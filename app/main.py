@@ -12,7 +12,9 @@ class KafkaServer:
         async with self.server:
             await self.server.serve_forever()
 
-    async def handle_request(self, writer, reader):
+    async def handle_request(self, reader, writer):
+        data = await reader.read(1064)
+        print(data, "17")
         pass
 
 async def main():

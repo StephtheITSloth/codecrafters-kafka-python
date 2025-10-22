@@ -28,7 +28,7 @@ class KafkaServer:
         response = struct.pack('>I', response_length) + response_body
         writer.write(response)
         await writer.drain()
-        pass
+        
 
 async def main():
     # You can use print statements as follows for debugging,

@@ -15,8 +15,8 @@ class KafkaServer:
     async def handle_request(self, reader, writer):
         data = await reader.read(1064)
         print(data, "data at 17")
-        data = data.decode()
-        print(data)
+        writer.write(b'00 00 00 00 00 00 00 07')
+        await writer.drain()
         pass
 
 async def main():

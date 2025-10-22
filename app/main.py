@@ -22,8 +22,10 @@ class KafkaServer:
         print(data, "data")
         print(api_key, "api key", api_version, "api version", correlation_id, "id")
         
-        response = struct.pack('>HHII', api_key, api_version, correlation_id, 35)
-        print(response, "response")
+        response_body = struct.pack('>Ih', correlation_id, 35)
+        response_length = len(response_body)
+
+        response = struct.pack('>I', response_length) + response_body
         writer.write(response)
         await writer.drain()
         pass

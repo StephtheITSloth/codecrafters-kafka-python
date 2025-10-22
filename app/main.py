@@ -16,7 +16,7 @@ class KafkaServer:
         data = await reader.read(1064)
         print(data, "data at 17")
         data = data.decode()
-        print(data, "data at 19")
+        print(data)
         pass
 
 async def main():

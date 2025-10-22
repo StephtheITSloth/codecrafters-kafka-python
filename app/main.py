@@ -13,9 +13,12 @@ class KafkaServer:
             await self.server.serve_forever()
 
     async def handle_request(self, reader, writer):
-        data = await reader.read(1064)
-        print(data, "data at 17")
-        data = struct.unpack('H>', data)
+        length = await reader.read(4)
+        message_length = struct.unpack('>I', length)[0]
+
+        data = await reader.read(message_length)
+        message = struct.unpack('>H', data)[0]
+
         print(data)
         # writer.write(b'00 00 00 07')
         # await writer.drain()

@@ -1,5 +1,5 @@
-import socket  # noqa: F401
 import asyncio
+import struct
 
 class KafkaServer:
     def __init__(self, host, port):
@@ -15,8 +15,10 @@ class KafkaServer:
     async def handle_request(self, reader, writer):
         data = await reader.read(1064)
         print(data, "data at 17")
-        writer.write(b'00 00 00 07')
-        await writer.drain()
+        data = struct.unpack('H>', data)
+        print(data)
+        # writer.write(b'00 00 00 07')
+        # await writer.drain()
         pass
 
 async def main():

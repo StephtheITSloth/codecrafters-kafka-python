@@ -17,11 +17,10 @@ class KafkaServer:
         message_length = struct.unpack('>I', length)[0]
 
         data = await reader.read(message_length)
-        message = struct.unpack('>H', data)[0]
+        api_key, api_version, correlation_id = struct.unpack('>HHI', data[0:8])
 
-        print(data)
-        # writer.write(b'00 00 00 07')
-        # await writer.drain()
+        print(data, "data")
+        print(api_key, "api key", api_version, "api version", correlation_id, "id")
         pass
 
 async def main():

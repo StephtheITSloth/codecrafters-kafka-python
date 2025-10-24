@@ -27,7 +27,7 @@ class KafkaServer:
 
         response = struct.pack('>I', response_length) + response_body
         writer.write(response)
-        await writer.drain()
+        await writer.drain() 
         
 
 async def main():

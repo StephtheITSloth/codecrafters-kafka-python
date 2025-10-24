@@ -23,7 +23,7 @@ class KafkaServer:
         print(api_key, "api key", type(api_key), "type of api key", api_version, "api version", correlation_id, "id")
         
         if api_key == 18:
-            response_body = struct.pack('>IhHiii', correlation_id, 35, 02, 18, 0, 4) + 00
+            response_body = struct.pack('>IhHiii', correlation_id, 35, 2, 18, 0, 4) + 00
             response_length = len(response_body)
         else:
             response_body = struct.pack('>Ih', correlation_id, 0)

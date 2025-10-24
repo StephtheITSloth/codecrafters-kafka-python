@@ -22,14 +22,16 @@ class KafkaServer:
         print(data, "data")
         print(api_key, "api key", type(api_key), "type of api key", api_version, "api version", correlation_id, "id")
         
-        if api_key != 18:
-            response_body = struct.pack('>Ih', correlation_id, 35)
+        if api_key == 18:
+            response_body = struct.pack('>IhHiii', correlation_id, 35, 02, 18, 0, 4) + 00
             response_length = len(response_body)
         else:
             response_body = struct.pack('>Ih', correlation_id, 0)
             response_length = len(response_body)
 
         response = struct.pack('>I', response_length) + response_body
+
+        print(response, "this is the response")
         writer.write(response)
         await writer.drain() 
         
